@@ -7,16 +7,18 @@ TagManager:
   - CameraBoundaries
   - Obstacle
   - Bullet
+  - MainMenuButton
+  - Item
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Boundary
   - Water
   - UI
   - Player
   - Bullet
-  - 
+  - Player Invulnerability
   - 
   - 
   - 

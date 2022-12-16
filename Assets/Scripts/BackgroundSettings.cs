@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class BackgroundSettings : MonoBehaviour
 {
-    public Sprite nebulaRed;
-    public Sprite nebulaBlue;
-    public Sprite nebulaAqua;
+    public Sprite[] backgrounds;
     public GameSettings gameSettings;
-    // Start is called before the first frame update
-    void Start()
-    {      
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -22,15 +15,23 @@ public class BackgroundSettings : MonoBehaviour
 
     private void backgroundChange(int score)
     {
-        switch(score)
+        if (score % 200000 == 0)
         {
-            case 500000:
-                this.gameObject.GetComponent<SpriteRenderer>().sprite = nebulaAqua;
-                break;
-            case 100000:
-                this.gameObject.GetComponent<SpriteRenderer>().sprite = nebulaBlue;
-                break;
+            if (gameObject.GetComponent<SpriteRenderer>().sprite != cycleBackgrounds())
+            {
+                gameObject.GetComponent<SpriteRenderer>().sprite = cycleBackgrounds();
+            }
+            else
+            {
+                gameObject.GetComponent<SpriteRenderer>().sprite = backgrounds[Random.Range(0, backgrounds.Length)];
+            }
+            
         }
 
+    }
+ 
+    private Sprite cycleBackgrounds()
+    {
+        return backgrounds[Random.Range(0, backgrounds.Length)];
     }
 }

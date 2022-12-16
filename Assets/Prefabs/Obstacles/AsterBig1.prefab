@@ -99,8 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c31bbb92dbc555c4b8e305360a5b2972, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 50
-  velocity: 0
+  moveSpeed: 24
+  velocity: 1
 --- !u!60 &-2774109158000225298
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -156,7 +156,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.25
+  m_Mass: 0.23
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0

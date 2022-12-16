@@ -1,40 +1,52 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
+//public class ObstacleStats
+//{
+//    public int hp;
+//    public float moveSpeed;
+
+//    public ObstacleStats(int hp, float moveSpeed)
+//    {
+//        this.hp = hp;
+//        this.moveSpeed = moveSpeed;
+//    }
+//}
 
 public class ObstacleSettings : MonoBehaviour
 {
     private Rigidbody2D rb2d;
     private int hp;
+    private string clone = "(Clone)";
     public float moveSpeed;
     public float velocity;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        hp = 3;
-        moveSpeed = 15.0f;
-        velocity = 2.0f;
-        rb2d = GetComponent<Rigidbody2D>();
-    }
+        if (gameObject.name == "AsterBig1" +clone)
+        {
+            hp = 3;
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        rb2d = GetComponent<Rigidbody2D>();
     }
 
     void FixedUpdate()
     {
-        this.rb2d.AddForce(transform.up * velocity * -moveSpeed * Time.deltaTime);  
+        rb2d.AddForce(transform.up * velocity * -moveSpeed * Time.deltaTime);
         if (isOOB())
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Bullet")
+        if (gameObject.tag == "Obstacle" && other.gameObject.tag == "Bullet") //obstacle gets hit by bullet
         {
             if (hp > 0)
             {
@@ -43,7 +55,16 @@ public class ObstacleSettings : MonoBehaviour
             else
             {
                 Destroy(gameObject);
-            }         
+            }
+        }
+        else if(gameObject.tag == "Item" && other.gameObject.tag == "Player") // destroyed when player hits item
+        {
+            Destroy(gameObject);
+        }
+        else if (other.gameObject.name == "Player") //automatically destroys it if player hits it
+        {
+ 
+            Destroy(gameObject);
         }
     }
 
@@ -52,4 +73,5 @@ public class ObstacleSettings : MonoBehaviour
         Vector2 screenPosition = Camera.main.WorldToScreenPoint(transform.position);
         return screenPosition.y < 0 - 50;
     }
+
 }

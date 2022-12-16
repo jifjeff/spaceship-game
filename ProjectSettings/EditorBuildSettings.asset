@@ -6,14 +6,14 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 0
-    path: Assets/Spaceship.unity
-    guid: befaed77bf8e558449862c80638b6e2e
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: e633747c263daa6409a2a615fa5aa630
+  - enabled: 1
+    path: Assets/Scenes/CampaignMode.unity
+    guid: a6470ff2ed8a4c84e864b14350630723
   - enabled: 1
     path: Assets/Scenes/ScoreMode.unity
     guid: 3469e97c80d159341bbb1e2c17b44a5b

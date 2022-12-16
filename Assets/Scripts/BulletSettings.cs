@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BulletSettings : MonoBehaviour
 {
-    public ShipController shipController;
     public float bulletSpeed;
     private Rigidbody2D rb2d;
 
@@ -31,7 +30,7 @@ public class BulletSettings : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Obstacle")
+        if (other.gameObject.tag == "Obstacle" || other.gameObject.tag == "Item")
         {
             Destroy(gameObject);
         }

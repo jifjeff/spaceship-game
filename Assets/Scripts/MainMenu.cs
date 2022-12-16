@@ -2,30 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class MainMenu : MonoBehaviour
 {
     public Button campaign;
+    public TMP_Text campaignText;
     public Button scoreBtn;
+    public TMP_Text scoreText;
     public Button exit;
+    public TMP_Text exitText;
+    public TMP_InputField livesSet;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Update()
     {
-
+        int.TryParse(livesSet.text, out int result);
+        PlayerPrefs.SetInt("lives", result);
     }
-
-    // Update is called once per frame
 
     public void campaignMode()
     {
-
+        SceneManager.LoadScene(1);
     }
 
     public void scoreMode()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 
     public void quitGame()

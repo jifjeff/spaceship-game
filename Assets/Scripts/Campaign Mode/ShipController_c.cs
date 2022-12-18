@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+
 //public class ShipStats : MonoBehaviour
 //{
 //    int hp;
     
 //}
-public class ShipController : MonoBehaviour
+public class ShipController_c : MonoBehaviour
 {
     private Rigidbody2D rb2d;
     private bool moveleft;
@@ -15,19 +17,16 @@ public class ShipController : MonoBehaviour
     private bool movedown;    
     private bool canShoot;
     private bool canMove;
-    private string clone = "(Clone)";
-    private float delayTime;
+    private float delayTime = 0.2f;
     public float moveSpeed;
     public GameObject spaceship;
-    public GameSettings gameSettings;
-    public BulletSpawner bulletSpawner;
+    public GameSettings_c gameSettings;
+    public BulletSpawner_c bulletSpawner;
+    public TMP_Text itemNotification;
     
-    
-
     // Start is called before the first frame update
     void Start()
     {
-        delayTime = 0.2f;
         moveSpeed = 8.0f;
         Time.timeScale = 1;
         canShoot = true;
@@ -44,7 +43,6 @@ public class ShipController : MonoBehaviour
         moveup = Input.GetKey(KeyCode.UpArrow);
         movedown = Input.GetKey(KeyCode.DownArrow);
     }
-
     void FixedUpdate()
     {
         if (canMove)
@@ -71,7 +69,16 @@ public class ShipController : MonoBehaviour
 
             if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Z)) && canShoot)
             {
+                
                 StartCoroutine(shootDelay(delayTime));
+                
+            }
+
+            if (gameSettings.isDead)
+            {
+                delayTime = 0.2f;
+                itemNotification.text = "";
+                gameSettings.isDeadFalse();
             }
         }
        
@@ -82,8 +89,6 @@ public class ShipController : MonoBehaviour
         
         if (other.gameObject.tag == "Obstacle")
         {
-
-            gameSettings.isPausedTrue();
             gameSettings.subtractLife();
             gameObject.SetActive(false);
             gameSettings.playerRespawn();
@@ -91,14 +96,13 @@ public class ShipController : MonoBehaviour
             canShoot = true;
             
         }
-        //else if(other.gameObject.name == "FireRateBoost" +clone)
-        //{
-        //    Debug.Log("Boost Started");
-        //    float startingDelayTime = delayTime;
-        //    delayTime = 0.1f;
-        //    StartCoroutine(wait(10.0f));
-        //    delayTime = startingDelayTime;
-        //}
+
+        else if(other.gameObject.tag == "Item")
+        {
+            itemNotification.text = $"{other.gameObject.name.ToString()} activated";
+            StartCoroutine(itemDuration(10.0f));
+            
+        }
     }
 
     IEnumerator shootDelay(float delay)
@@ -107,10 +111,14 @@ public class ShipController : MonoBehaviour
         canShoot = false;
         yield return new WaitForSeconds(delay);
         canShoot = true;
+
     }
 
-    IEnumerator wait(float time) //duration courotine
-    {
+    IEnumerator itemDuration(float time)
+    {      
+        delayTime = 0.1f;
         yield return new WaitForSeconds(time);
+        delayTime = 0.2f;
+        itemNotification.text = "";
     }
 }

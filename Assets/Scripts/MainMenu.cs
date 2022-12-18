@@ -16,6 +16,12 @@ public class MainMenu : MonoBehaviour
     public TMP_Text exitText;
     public TMP_InputField livesSet;
 
+
+    private void Start()
+    {
+        PlayerPrefs.SetInt("levelCounter", 1);
+    }
+
     private void Update()
     {
         int.TryParse(livesSet.text, out int result);
@@ -29,7 +35,7 @@ public class MainMenu : MonoBehaviour
 
     public void scoreMode()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(SceneManager.sceneCountInBuildSettings - 1);
     }
 
     public void quitGame()

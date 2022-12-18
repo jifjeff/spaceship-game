@@ -6,8 +6,10 @@ using UnityEngine.SceneManagement;
 public class GameSettings : MonoBehaviour
 {
     GUIStyle scoreFont = new GUIStyle();
+    GUIStyle livesFont = new GUIStyle();
     public GameObject panel;   
-    public bool isPaused;
+    private bool isPaused;
+    public bool isDead;
     private int getLives;
     public int score;
     private int finalScore;
@@ -27,9 +29,20 @@ public class GameSettings : MonoBehaviour
         isPaused = false;
         Time.timeScale = 1;
         scoreFont.normal.textColor = Color.cyan;
-        scoreFont.fontSize = 26; 
+        scoreFont.fontSize = 26;
+        livesFont.fontSize = scoreFont.fontSize;
+        getLives = 1;   
+        if (getLives == 1)
+        {
+            
+            livesFont.normal.textColor = Color.red;
+        }
+        else
+        {
+            livesFont.normal.textColor = scoreFont.normal.textColor;         
+        }       
         score = 0;
-        getLives = PlayerPrefs.GetInt("lives");
+        
     }
 
     // Update is called once per frame
@@ -45,11 +58,12 @@ public class GameSettings : MonoBehaviour
         {
             Pause();     
         }
-        
+
         if (getLives <= 0)
         {
             StartCoroutine(wfs());
         }
+
     }
 
     public void Pause()
@@ -70,8 +84,7 @@ public class GameSettings : MonoBehaviour
     }
 
     public void GameOver()
-    {
-        
+    {        
         panel.SetActive(true);
         resume.SetActive(false);
         playAgain.SetActive(true);
@@ -96,7 +109,7 @@ public class GameSettings : MonoBehaviour
     private void OnGUI()
     {
         GUI.Label(new Rect(10, 10, 300, 50), $"Score: {score.ToString("D9")}", scoreFont);
-        GUI.Label(new Rect(Screen.width - 150, Screen.height - Screen.height / 12, 300, 50), $"Lives: {getLives.ToString()}", scoreFont);       
+        GUI.Label(new Rect(Screen.width - 150, Screen.height - Screen.height / 12, 300, 50), $"Lives:  {getLives.ToString()}", livesFont);       
     }
 
     IEnumerator time_incrementScore()
@@ -114,8 +127,10 @@ public class GameSettings : MonoBehaviour
 
     public void playerRespawn()
     {
+        isDead = true;
         Invoke("respawner", 3.0f);
         Invoke("isPausedFalse", 3.1f);
+
     }
 
     private void respawner()
@@ -134,6 +149,7 @@ public class GameSettings : MonoBehaviour
     public void subtractLife()
     {
         getLives -= 1;
+        
     }
 
     public void isPausedTrue()
@@ -144,5 +160,6 @@ public class GameSettings : MonoBehaviour
     public void isPausedFalse()
     {
         isPaused = false;
+        isDead = false;
     }
 }

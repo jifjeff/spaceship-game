@@ -15,7 +15,7 @@ public class BackgroundSettings : MonoBehaviour
 
     private void backgroundChange(int score)
     {
-        if (score % 200000 == 0)
+        if (score % 150000 == 0 && score != 0)
         {
             if (gameObject.GetComponent<SpriteRenderer>().sprite != cycleBackgrounds())
             {

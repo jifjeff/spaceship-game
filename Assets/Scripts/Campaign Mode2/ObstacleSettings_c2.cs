@@ -15,7 +15,7 @@ using UnityEngine.UI;
 //    }
 //}
 
-public class ObstacleSettings : MonoBehaviour
+public class ObstacleSettings_c2 : MonoBehaviour
 {
     private Rigidbody2D rb2d;
     private int hp;
@@ -23,13 +23,20 @@ public class ObstacleSettings : MonoBehaviour
     public float moveSpeed;
     public float velocity;
 
-
     // Start is called before the first frame update
     void Start()
     {
-        if (gameObject.name == "AsterBig1" +clone)
+        if (gameObject.name == "brown" +clone)
         {
-            hp = 3;
+            hp = 0;
+        }
+        else if (gameObject.name == "green" +clone)
+        {
+            hp = 2;
+        }
+        else
+        {
+            hp = 1000;
         }
 
         rb2d = GetComponent<Rigidbody2D>();
@@ -46,22 +53,22 @@ public class ObstacleSettings : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (gameObject.tag == "Obstacle" && other.gameObject.tag == "Bullet") //obstacle gets hit by bullet
+        if (gameObject.tag == "Obstacle" && other.gameObject.tag == "Bullet" && gameObject.name != "red") //obstacle gets hit by bullet
         {
-            if (hp > 0)
-            {
-                hp -= 1;
-            }
-            else
+            if(hp <= 0)
             {
                 Destroy(gameObject);
             }
+            else
+            {
+                hp--;
+            }
         }
-        else if(gameObject.tag == "Item" && other.gameObject.tag == "Player") // destroyed when player hits item
+        else if(gameObject.tag == "Item" && other.gameObject.tag == "Player") // obstacle destroyed when player hits item
         {
             Destroy(gameObject);
         }
-        else if (other.gameObject.name == "Player") //automatically destroys it if player hits it
+        else if (other.gameObject.name == "Player" && gameObject.name != "red") //obstacle destroyed if the player hits it
         {
  
             Destroy(gameObject);

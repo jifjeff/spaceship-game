@@ -27,9 +27,14 @@ public class GameSettings : MonoBehaviour
         isPaused = false;
         Time.timeScale = 1;
         scoreFont.normal.textColor = Color.cyan;
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream:Assets/Scripts/GameSettings.cs
         scoreFont.fontSize = 26; 
 =======
+=======
+        scoreFont.fontSize = 26; 
+
+>>>>>>> Stashed changes
         scoreFont.fontSize = 60;
         livesFont.fontSize = scoreFont.fontSize;
         getLives = 1;   
@@ -42,7 +47,10 @@ public class GameSettings : MonoBehaviour
         {
             livesFont.normal.textColor = scoreFont.normal.textColor;         
         }       
+<<<<<<< Updated upstream
 >>>>>>> Stashed changes:Assets/Scripts/Score Mode/GameSettings.cs
+=======
+>>>>>>> Stashed changes
         score = 0;
         getLives = PlayerPrefs.GetInt("lives");
     }

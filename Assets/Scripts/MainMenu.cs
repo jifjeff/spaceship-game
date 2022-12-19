@@ -19,7 +19,7 @@ public class MainMenu : MonoBehaviour
     private void Update()
     {
         int.TryParse(livesSet.text, out int result);
-        PlayerPrefs.SetInt("lives", result);
+        PlayerPrefs.SetInt("livesCounter", result);
     }
 
     public void campaignMode()

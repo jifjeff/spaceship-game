@@ -27,7 +27,22 @@ public class GameSettings : MonoBehaviour
         isPaused = false;
         Time.timeScale = 1;
         scoreFont.normal.textColor = Color.cyan;
+<<<<<<< Updated upstream:Assets/Scripts/GameSettings.cs
         scoreFont.fontSize = 26; 
+=======
+        scoreFont.fontSize = 60;
+        livesFont.fontSize = scoreFont.fontSize;
+        getLives = 1;   
+        if (getLives == 1)
+        {
+            
+            livesFont.normal.textColor = Color.red;
+        }
+        else
+        {
+            livesFont.normal.textColor = scoreFont.normal.textColor;         
+        }       
+>>>>>>> Stashed changes:Assets/Scripts/Score Mode/GameSettings.cs
         score = 0;
         getLives = PlayerPrefs.GetInt("lives");
     }
@@ -96,7 +111,11 @@ public class GameSettings : MonoBehaviour
     private void OnGUI()
     {
         GUI.Label(new Rect(10, 10, 300, 50), $"Score: {score.ToString("D9")}", scoreFont);
+<<<<<<< Updated upstream:Assets/Scripts/GameSettings.cs
         GUI.Label(new Rect(Screen.width - 150, Screen.height - Screen.height / 12, 300, 50), $"Lives: {getLives.ToString()}", scoreFont);       
+=======
+        GUI.Label(new Rect(Screen.width - 260, Screen.height - Screen.height / 12, 300, 50), $"Lives:  {getLives.ToString()}", livesFont);       
+>>>>>>> Stashed changes:Assets/Scripts/Score Mode/GameSettings.cs
     }
 
     IEnumerator time_incrementScore()

@@ -33,6 +33,10 @@ public class BulletSettings : MonoBehaviour
         if (other.gameObject.tag == "Obstacle" || other.gameObject.tag == "Item")
         {
             Destroy(gameObject);
+            if (other.gameObject.tag == "Obstacle")
+            {
+                
+            }
         }
     }
 }

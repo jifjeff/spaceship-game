@@ -6,60 +6,59 @@ using UnityEngine.UI;
 public class ObstacleSpawner : MonoBehaviour
 {
     public GameSettings gameSettings;
-    public GameObject Obstacle;
+    public GameObject[] obstacles;
     public GameObject[] items;
     //public GameObject[] obstacles;
     public Text statusText;
     private float spawnRate;
+    private int unlock;
+    private int i;
     // Start is called before the first frame update
     void Start()
     {
-        spawnRate = 0.6f;
+        unlock = 2;
+        spawnRate = 0.5f;
         statusText.color = Color.black;
-        StartCoroutine(wfs(3.0f));      
+        StartCoroutine(start(3.0f));      
     }
 
-    private void Update()
+    void Update()
     {
         if (gameSettings.score % 7500 == 0)
         {
             spawnRate -= 0.010f;
+            if (spawnRate <= 0.15f)
+            {
+                spawnRate = 0.15f;
+            }
         }
+        i = Random.Range(0, obstacles.Length - unlock);
     }
     void spawn()
     {
-<<<<<<< Updated upstream:Assets/Scripts/ObstacleSpawner.cs
-        //int i = Random.Range(0, obstacles.Length);
-        GameObject spawner = Instantiate(Obstacle, transform.position, Quaternion.identity);
-        spawner.transform.position += Vector3.right * Random.Range(-8.5f, 8.5f);
-=======
         addObstacles(gameSettings.score);      
         GameObject spawner = Instantiate(obstacles[i], transform.position, Quaternion.identity);
-        spawner.transform.position += Vector3.right * Random.Range(-8.4f, 8.4f);
->>>>>>> Stashed changes:Assets/Scripts/Score Mode/ObstacleSpawner.cs
+        spawner.transform.position += Vector3.right * Random.Range(-8.0f, 8.0f);
     }
 
     void spawnItem()
     {
-        GameObject spawnerItem = Instantiate(items[0], transform.position, Quaternion.identity);
-        spawnerItem.transform.position += Vector3.right * Random.Range(-8.4f, 8.4f);
+        GameObject itemSpawner = Instantiate(items[0], transform.position, Quaternion.identity);
+        itemSpawner.transform.position += Vector3.right * Random.Range(-8.0f, 8.0f);
     }
 
-    IEnumerator wfs(float time)
+    IEnumerator start(float time)
     {
         statusText.text = "Survive for as long as you can!";
         yield return new WaitForSeconds(time);
         statusText.text = "";
         InvokeRepeating("spawn", 1.0f, spawnRate);
-<<<<<<< Updated upstream:Assets/Scripts/ObstacleSpawner.cs
         InvokeRepeating("spawnItem", 5.0f, 160.0f);
-=======
-        InvokeRepeating("spawnItem", 120.0f, 160.0f);
     }
 
     private void addObstacles(int score)
     {
-        if (score >= 200000)
+        if (score >= 150000)
         {
             unlock = 0;
         }
@@ -67,6 +66,5 @@ public class ObstacleSpawner : MonoBehaviour
         {
             unlock = 1;
         }
->>>>>>> Stashed changes:Assets/Scripts/Score Mode/ObstacleSpawner.cs
     }
 }

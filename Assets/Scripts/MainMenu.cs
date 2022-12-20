@@ -16,6 +16,11 @@ public class MainMenu : MonoBehaviour
     public TMP_Text exitText;
     public TMP_InputField livesSet;
 
+    private void Start()
+    {
+        Time.timeScale = 1;
+    }
+
     private void Update()
     {
         int.TryParse(livesSet.text, out int result);
@@ -24,12 +29,12 @@ public class MainMenu : MonoBehaviour
 
     public void campaignMode()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void scoreMode()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(SceneManager.sceneCountInBuildSettings - 1);
     }
 
     public void quitGame()

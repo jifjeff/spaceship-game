@@ -3,11 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-//public class ShipStats : MonoBehaviour
-//{
-//    int hp;
-    
-//}
 public class ShipController_c2 : MonoBehaviour
 {
     private Rigidbody2D rb2d;
@@ -21,7 +16,7 @@ public class ShipController_c2 : MonoBehaviour
     public float moveSpeed;
     public GameObject spaceship;
     public GameSettings_c2 gameSettings;
-    public BulletSpawner_c2 bulletSpawner;
+    //public BulletSpawner_c2 bulletSpawner;
     public TMP_Text itemNotification;
     
     // Start is called before the first frame update
@@ -105,7 +100,7 @@ public class ShipController_c2 : MonoBehaviour
 
     IEnumerator shootDelay(float delay)
     {
-        bulletSpawner.Spawn();
+        //bulletSpawner.Spawn();
         canShoot = false;
         yield return new WaitForSeconds(delay);
         canShoot = true;

@@ -34,7 +34,7 @@ public class GameSettings_c : MonoBehaviour
         Time.timeScale = 1;
         isDead = false;
         hasFinishedLevel = false;
-        scoreFont.normal.textColor = Color.green;
+        startParams(getLevelNumber);
         scoreFont.fontSize = 60;
         livesFont.fontSize = scoreFont.fontSize;        
         livesFont.normal.textColor = scoreFont.normal.textColor;
@@ -43,14 +43,14 @@ public class GameSettings_c : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (getLives == 1)
-        {
-            livesFont.normal.textColor = Color.red;
-        }
-
         if (Input.GetKey(KeyCode.Escape))
         {
             Pause();     
+        }
+
+        if (getLives == 1)
+        {
+            livesFont.normal.textColor = Color.red;
         }
 
         if (getLives <= 0)
@@ -61,12 +61,12 @@ public class GameSettings_c : MonoBehaviour
         if(hasFinishedLevel)
         {
             
-            StartCoroutine(levelFinished());
+            StartCoroutine(levelFinishedCoro());
         }
     }
     private void OnGUI()
     {
-        GUI.Label(new Rect(10, 10, 300, 50), $"Level {getLevelNumber}", scoreFont);
+        GUI.Label(new Rect(10, 10, 300, 50), $"Level {getLevelNumber.ToString()}", scoreFont);
         GUI.Label(new Rect(Screen.width - 260, Screen.height - Screen.height / 12, 300, 50), $"Lives:  {getLives.ToString()}", livesFont);
     }
 
@@ -106,7 +106,7 @@ public class GameSettings_c : MonoBehaviour
 
     public void playAgainPressed()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(1);
     }
 
     public void continuePressed()
@@ -116,7 +116,7 @@ public class GameSettings_c : MonoBehaviour
         SceneManager.LoadScene("CampaignMode_2");
     }
 
-    public void toMainMenu()
+    public void mainMenuPressed()
     {
         Time.timeScale = 1;
         SceneManager.LoadScene(0);
@@ -127,16 +127,14 @@ public class GameSettings_c : MonoBehaviour
         musicPlayer.Stop();
         yield return new WaitForSeconds(3.0f);
         GameOver();
-        StopCoroutine(gameOverCoro());
     }
 
-    IEnumerator levelFinished()
+    IEnumerator levelFinishedCoro()
     {
         musicPlayer.Stop();
         yield return new WaitForSeconds(7.0f);
         PlayerPrefs.SetInt("currentLives", getLives);
         finishedLevel();
-        StopCoroutine(levelFinished());
     }
 
     public void playerRespawn()
@@ -168,5 +166,21 @@ public class GameSettings_c : MonoBehaviour
     public void isDeadFalse()
     {
         isDead = false;
+    }
+
+    private void startParams(int level)
+    {
+        switch (level)
+        {
+            case 1:
+                scoreFont.normal.textColor = Color.green;
+                break;
+            case 2:
+                scoreFont.normal.textColor = Color.gray;
+                break;
+            case 3:
+                scoreFont.normal.textColor = new Color(255, 165, 0);
+                break;
+        }
     }
 }

@@ -1,11 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//public class ShipStats : MonoBehaviour
-//{
-//    int hp;
-    
-//}
+using TMPro;
+
 public class ShipController : MonoBehaviour
 {
     private Rigidbody2D rb2d;
@@ -15,14 +12,13 @@ public class ShipController : MonoBehaviour
     private bool movedown;    
     private bool canShoot;
     private bool canMove;
-    private string clone = "(Clone)";
     private float delayTime;
     public float moveSpeed;
     public GameObject spaceship;
+    public ObstacleSpawner obstacleSpawner;
     public GameSettings gameSettings;
     public BulletSpawner bulletSpawner;
-    
-    
+    public TMP_Text itemNotification;
 
     // Start is called before the first frame update
     void Start()
@@ -73,8 +69,14 @@ public class ShipController : MonoBehaviour
             {
                 StartCoroutine(shootDelay(delayTime));
             }
-        }
-       
+
+            if (gameSettings.isDead)
+            {
+                delayTime = 0.2f;
+                itemNotification.text = "";
+                gameSettings.isDead = false;
+            }
+        }      
     }
 
     public void OnTriggerEnter2D(Collider2D other)
@@ -82,8 +84,7 @@ public class ShipController : MonoBehaviour
         
         if (other.gameObject.tag == "Obstacle")
         {
-
-            gameSettings.isPausedTrue();
+            gameSettings.isPaused = true;
             gameSettings.subtractLife();
             gameObject.SetActive(false);
             gameSettings.playerRespawn();
@@ -91,14 +92,11 @@ public class ShipController : MonoBehaviour
             canShoot = true;
             
         }
-        //else if(other.gameObject.name == "FireRateBoost" +clone)
-        //{
-        //    Debug.Log("Boost Started");
-        //    float startingDelayTime = delayTime;
-        //    delayTime = 0.1f;
-        //    StartCoroutine(wait(10.0f));
-        //    delayTime = startingDelayTime;
-        //}
+        else if (other.gameObject.tag == "Item")
+        {
+            itemNotification.text = "Fire Rate Boost activated";
+            StartCoroutine(itemDuration(10.0f));
+        }
     }
 
     IEnumerator shootDelay(float delay)
@@ -109,8 +107,11 @@ public class ShipController : MonoBehaviour
         canShoot = true;
     }
 
-    IEnumerator wait(float time) //duration courotine
+    IEnumerator itemDuration(float time)
     {
+        delayTime = 0.1f;
         yield return new WaitForSeconds(time);
+        delayTime = 0.2f;
+        itemNotification.text = "";
     }
 }

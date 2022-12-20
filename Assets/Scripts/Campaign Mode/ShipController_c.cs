@@ -2,12 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-
-//public class ShipStats : MonoBehaviour
-//{
-//    int hp;
-    
-//}
 public class ShipController_c : MonoBehaviour
 {
     private Rigidbody2D rb2d;
@@ -27,7 +21,6 @@ public class ShipController_c : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Screen.SetResolution(1920, 1080, true);
         moveSpeed = 8.0f;
         Time.timeScale = 1;
         canShoot = true;
@@ -69,10 +62,8 @@ public class ShipController_c : MonoBehaviour
             }
 
             if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Z)) && canShoot)
-            {
-                
-                StartCoroutine(shootDelay(delayTime));
-                
+            {                
+                StartCoroutine(shootDelay(delayTime));               
             }
 
             if (gameSettings.isDead)
@@ -100,7 +91,7 @@ public class ShipController_c : MonoBehaviour
 
         else if(other.gameObject.tag == "Item")
         {
-            itemNotification.text = $"{other.gameObject.name.ToString()} activated";
+            itemNotification.text = "Fire Rate Boost activated";
             StartCoroutine(itemDuration(10.0f));
             
         }

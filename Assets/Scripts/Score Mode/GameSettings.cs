@@ -6,17 +6,20 @@ using UnityEngine.SceneManagement;
 public class GameSettings : MonoBehaviour
 {
     GUIStyle scoreFont = new GUIStyle();
-    public GameObject panel;   
-    public bool isPaused;
-    private int getLives;
-    public int score;
-    private int finalScore;
+    GUIStyle livesFont = new GUIStyle();
+    public GameObject panel;
     public GameObject resume;
-    public GameObject mainMenuButton;
     public GameObject playAgain;
+    public GameObject mainMenuButton;
+    public GameObject player;
+    public GameObject obstacleSpawner;
     public TMP_Text menuText;
     public AudioSource musicPlayer;
-    public GameObject player;
+    private int getLives;
+    public int score;
+    public bool hasFinishedLevel;
+    public bool isPaused;
+    public bool isDead;
 
     // Start is called before the first frame update
     void Start()
@@ -26,33 +29,12 @@ public class GameSettings : MonoBehaviour
         mainMenuButton.SetActive(true);
         isPaused = false;
         Time.timeScale = 1;
-        scoreFont.normal.textColor = Color.cyan;
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream:Assets/Scripts/GameSettings.cs
-        scoreFont.fontSize = 26; 
-=======
-=======
-        scoreFont.fontSize = 26; 
-
->>>>>>> Stashed changes
+        scoreFont.normal.textColor = Color.cyan; 
         scoreFont.fontSize = 60;
         livesFont.fontSize = scoreFont.fontSize;
-        getLives = 1;   
-        if (getLives == 1)
-        {
-            
-            livesFont.normal.textColor = Color.red;
-        }
-        else
-        {
-            livesFont.normal.textColor = scoreFont.normal.textColor;         
-        }       
-<<<<<<< Updated upstream
->>>>>>> Stashed changes:Assets/Scripts/Score Mode/GameSettings.cs
-=======
->>>>>>> Stashed changes
+        getLives = 1;
+        livesFont.normal.textColor = scoreFont.normal.textColor;    
         score = 0;
-        getLives = PlayerPrefs.GetInt("lives");
     }
 
     // Update is called once per frame
@@ -71,7 +53,12 @@ public class GameSettings : MonoBehaviour
         
         if (getLives <= 0)
         {
-            StartCoroutine(wfs());
+            StartCoroutine(triggerGameOver());
+        }
+
+        if (getLives == 1)
+        {
+            livesFont.normal.textColor = Color.red;
         }
     }
 
@@ -93,16 +80,14 @@ public class GameSettings : MonoBehaviour
     }
 
     public void GameOver()
-    {
-        
+    {    
         panel.SetActive(true);
         resume.SetActive(false);
         playAgain.SetActive(true);
         musicPlayer.Stop();
         isPaused = true;
-        Time.timeScale = 0;
-        finalScore = score;       
-        menuText.text = $"Your Score: {finalScore.ToString()}";
+        Time.timeScale = 0;      
+        menuText.text = $"Your Score: {score.ToString()}";
     }
 
     public void playAgainPressed()
@@ -110,39 +95,32 @@ public class GameSettings : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public void toMainMenu()
+    public void mainMenuPressed()
     {
-        Time.timeScale = 1;
         SceneManager.LoadScene(0);
     }
 
     private void OnGUI()
     {
-        GUI.Label(new Rect(10, 10, 300, 50), $"Score: {score.ToString("D9")}", scoreFont);
-<<<<<<< Updated upstream:Assets/Scripts/GameSettings.cs
-        GUI.Label(new Rect(Screen.width - 150, Screen.height - Screen.height / 12, 300, 50), $"Lives: {getLives.ToString()}", scoreFont);       
-=======
-        GUI.Label(new Rect(Screen.width - 260, Screen.height - Screen.height / 12, 300, 50), $"Lives:  {getLives.ToString()}", livesFont);       
->>>>>>> Stashed changes:Assets/Scripts/Score Mode/GameSettings.cs
+        GUI.Label(new Rect(10, 10, 300, 50), $"{score.ToString("D9")}", scoreFont);
+        GUI.Label(new Rect(Screen.width - 260, Screen.height - Screen.height / 12, 300, 50), $"Lives: {getLives.ToString()}", livesFont);       
     }
 
     IEnumerator time_incrementScore()
     {
         score += 1;        
-        yield return new WaitForSecondsRealtime(1.0f);
+        yield return new WaitForSeconds(1.0f);
     }
 
-    IEnumerator wfs()
+    IEnumerator triggerGameOver()
     {
         yield return new WaitForSeconds(3.0f);
         GameOver();
-        StopCoroutine(wfs());
     }
 
     public void playerRespawn()
     {
         Invoke("respawner", 3.0f);
-        Invoke("isPausedFalse", 3.1f);
     }
 
     private void respawner()
@@ -161,15 +139,5 @@ public class GameSettings : MonoBehaviour
     public void subtractLife()
     {
         getLives -= 1;
-    }
-
-    public void isPausedTrue()
-    {
-        isPaused = true;
-    }
-
-    public void isPausedFalse()
-    {
-        isPaused = false;
     }
 }

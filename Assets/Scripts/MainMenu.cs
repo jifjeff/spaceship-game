@@ -15,9 +15,11 @@ public class MainMenu : MonoBehaviour
     public Button exit;
     public TMP_Text exitText;
     public TMP_InputField livesSet;
+    private int level;
 
     private void Start()
     {
+        level = 1;
         Time.timeScale = 1;
     }
 
@@ -29,11 +31,13 @@ public class MainMenu : MonoBehaviour
 
     public void campaignMode()
     {
+        PlayerPrefs.SetInt("levelCounter", level);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void scoreMode()
     {
+        PlayerPrefs.SetInt("levelCounter", level);
         SceneManager.LoadScene(SceneManager.sceneCountInBuildSettings - 1);
     }
 

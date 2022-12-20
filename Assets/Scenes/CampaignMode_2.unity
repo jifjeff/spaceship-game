@@ -367,13 +367,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 269835719}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5d4db1e7564fb84ebd5d8ec37dc564e, type: 3}
+  m_Script: {fileID: 11500000, guid: 14100e72815a9414099c8575f6572fcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 8
   spaceship: {fileID: 147846, guid: e2a563409f05b26429e07cb45c0d2ea2, type: 3}
   gameSettings: {fileID: 1038809748}
-  bulletSpawner: {fileID: 2031826795}
+  bulletSpawner: {fileID: 2031826796}
   itemNotification: {fileID: 1856792904}
 --- !u!1 &352776467
 GameObject:
@@ -491,8 +491,8 @@ RectTransform:
   m_Children:
   - {fileID: 1989653593}
   - {fileID: 2017502803}
-  - {fileID: 682162750}
   - {fileID: 642301587}
+  - {fileID: 682162750}
   - {fileID: 1073532491}
   m_Father: {fileID: 1517934174}
   m_RootOrder: 1
@@ -766,7 +766,7 @@ RectTransform:
   m_Children:
   - {fileID: 723719402}
   m_Father: {fileID: 419549606}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -818,7 +818,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1038809748}
-        m_TargetAssemblyTypeName: GameSettings_c2, Assembly-CSharp
+        m_TargetAssemblyTypeName: GameSettings_c, Assembly-CSharp
         m_MethodName: Resume
         m_Mode: 1
         m_Arguments:
@@ -951,18 +951,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 682162749}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1904211143}
   m_Father: {fileID: 419549606}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5.3386, y: 93}
+  m_AnchoredPosition: {x: 5.3386, y: -125}
   m_SizeDelta: {x: 271.33, y: 65.5549}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &682162751
@@ -1010,8 +1010,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1038809748}
-        m_TargetAssemblyTypeName: GameSettings_c2, Assembly-CSharp
-        m_MethodName: toMainMenu
+        m_TargetAssemblyTypeName: GameSettings_c, Assembly-CSharp
+        m_MethodName: mainMenuPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1479,11 +1479,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1038809745}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b6b53ee53f72a2449e32dcb1c8c78df, type: 3}
+  m_Script: {fileID: 11500000, guid: c8f7feb23836b2747ace41fb52906603, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 419549605}
-  obstacleSpawner: {fileID: 1406612316}
   resume: {fileID: 642301586}
   mainMenuButton: {fileID: 682162749}
   playAgain: {fileID: 2017502802}
@@ -1578,7 +1577,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1038809748}
-        m_TargetAssemblyTypeName: GameSettings_c2, Assembly-CSharp
+        m_TargetAssemblyTypeName: GameSettings_c, Assembly-CSharp
         m_MethodName: continuePressed
         m_Mode: 1
         m_Arguments:
@@ -1718,7 +1717,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 11ca79fb89cb3e2488c66e7f407b192e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ddcac1fac1f5c8943a30c2ef6b724062, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1797,7 +1796,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1406612316}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f111c2165f9c1a544ad72d807a3489d1, type: 3}
+  m_Script: {fileID: 11500000, guid: e125cdc7257a6d04b9a3f12f052652d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gameSettings: {fileID: 1038809748}
@@ -1837,7 +1836,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: bc992ef8b57574046909844ddba52a40, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.4
+  m_Volume: 0.65
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -2337,7 +2336,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -551, y: -372}
+  m_AnchoredPosition: {x: -576, y: -389}
   m_SizeDelta: {x: 322.8716, y: 107.34}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1856792904
@@ -2584,7 +2583,7 @@ GameObject:
   - component: {fileID: 1989653595}
   - component: {fileID: 1989653594}
   m_Layer: 5
-  m_Name: Results
+  m_Name: Menu Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2792,7 +2791,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1038809748}
-        m_TargetAssemblyTypeName: GameSettings_c2, Assembly-CSharp
+        m_TargetAssemblyTypeName: GameSettings_c, Assembly-CSharp
         m_MethodName: playAgainPressed
         m_Mode: 1
         m_Arguments:
@@ -2850,7 +2849,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2031826794}
-  - component: {fileID: 2031826795}
+  - component: {fileID: 2031826796}
   m_Layer: 0
   m_Name: Bullet Shooter
   m_TagString: Untagged
@@ -2874,7 +2873,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2031826795
+--- !u!114 &2031826796
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2883,12 +2882,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2031826792}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6619f49928c0bbb47b367df3cb77d900, type: 3}
+  m_Script: {fileID: 11500000, guid: 7a7ae4f8f1a0d864594ee7daa0aaa7f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 6636342754748696102, guid: 3f21445c3adbc3348bffc913b0135db9, type: 3}
+  bulletSprite: {fileID: 6636342754748696102, guid: 3f21445c3adbc3348bffc913b0135db9, type: 3}
   shipController: {fileID: 269835729}
-  audio: {fileID: 1667271791}
+  shootingSound: {fileID: 1667271791}
 --- !u!1 &2076196551
 GameObject:
   m_ObjectHideFlags: 0

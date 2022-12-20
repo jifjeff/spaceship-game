@@ -459,9 +459,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1038809745}
-        m_TargetAssemblyTypeName: GameSettings_c3, Assembly-CSharp
-        m_MethodName: 
+      - m_Target: {fileID: 1038809749}
+        m_TargetAssemblyTypeName: GameSettings_c, Assembly-CSharp
+        m_MethodName: continuePressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1078,7 +1078,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 1629595915}
-  obstacleSpawner: {fileID: 1406612316}
   resume: {fileID: 1924739193}
   mainMenuButton: {fileID: 1645858561}
   playAgain: {fileID: 1915146898}
@@ -1123,8 +1122,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -551, y: -372}
-  m_SizeDelta: {x: 322.8716, y: 107.34}
+  m_AnchoredPosition: {x: -602.3, y: -406.4}
+  m_SizeDelta: {x: 277.5514, y: 76.4398}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1111452262
 MonoBehaviour:
@@ -2076,7 +2075,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: bd1f12fd6aeee804daa61b779535fbce, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 1
   Mute: 0

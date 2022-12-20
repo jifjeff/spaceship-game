@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 25
-  velocity: 2
+  velocity: 2.1
 --- !u!60 &7528262620723897519
 PolygonCollider2D:
   m_ObjectHideFlags: 0

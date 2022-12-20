@@ -311,4 +311,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 25
-  velocity: 2.2
+  velocity: 2.3

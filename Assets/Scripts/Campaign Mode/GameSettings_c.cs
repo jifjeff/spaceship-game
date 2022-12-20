@@ -8,7 +8,6 @@ public class GameSettings_c : MonoBehaviour
     GUIStyle scoreFont = new GUIStyle();
     GUIStyle livesFont = new GUIStyle();  
     public GameObject panel;
-    public GameObject obstacleSpawner;
     public GameObject resume;
     public GameObject mainMenuButton;
     public GameObject playAgain;
@@ -67,7 +66,7 @@ public class GameSettings_c : MonoBehaviour
     private void OnGUI()
     {
         GUI.Label(new Rect(10, 10, 300, 50), $"Level {getLevelNumber.ToString()}", scoreFont);
-        GUI.Label(new Rect(Screen.width - 260, Screen.height - Screen.height / 12, 300, 50), $"Lives:  {getLives.ToString()}", livesFont);
+        GUI.Label(new Rect(Screen.width - 260, Screen.height - Screen.height / 12, 300, 50), $"Lives: {getLives.ToString()}", livesFont);
     }
 
     public void Pause()
@@ -98,10 +97,19 @@ public class GameSettings_c : MonoBehaviour
     {
         panel.SetActive(true);
         resume.SetActive(false);
-        toNextLevel.SetActive(true);        
         musicPlayer.Stop();
         Time.timeScale = 0;
-        menuText.text = "There's still more to go";
+        if (getLevelNumber == 3)
+        {
+            toNextLevel.SetActive(false);
+            menuText.text = "Congratulations! The mysterious beings have been pushed back";
+            menuText.fontSize = 40;
+        }
+        else
+        {                      
+            toNextLevel.SetActive(true);                       
+            menuText.text = "There's still more to go";
+        }
     }
 
     public void playAgainPressed()
@@ -113,7 +121,7 @@ public class GameSettings_c : MonoBehaviour
     {
         PlayerPrefs.SetInt("livesCounter", getLives);
         PlayerPrefs.SetInt("levelCounter", getLevelNumber + 1);
-        SceneManager.LoadScene("CampaignMode_2");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void mainMenuPressed()
@@ -143,7 +151,6 @@ public class GameSettings_c : MonoBehaviour
         Invoke("respawner", 3.2f);       
 
     }
-
     private void respawner()
     {
         player.transform.position = player.transform.position;
